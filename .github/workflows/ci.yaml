@@ -73,5 +73,6 @@ jobs:
             --tag ghcr.io/verifiable-presentation/identity:$(cat package.json | jq -r '.version') \
             --tag identity \
             --file build.dockerfile .
+      - name: Publish the Docker image
         run: |
           docker push --all-tags identity
