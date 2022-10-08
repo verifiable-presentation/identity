@@ -1,0 +1,82 @@
+{
+	"name": "@verifiable-presentation/identity",
+	"version": "0.0.0",
+	"description": "Identity APIs to used to generate DID documents for entities based on external identifiers.",
+	"type": "module",
+	"engines": {
+		"node": "18",
+		"pnpm": "7"
+	},
+	"scripts": {
+		"compile": "tsup ./source/server.ts",
+		"start": "node ./build/server.js",
+		"develop": "tsx watch --clear-screen ./source/server.ts",
+		"test:lint": "xo",
+		"test:smoke": "ava --match smoke*",
+		"test": "run-s test:*",
+		"prepare": "run-s compile"
+	},
+	"dependencies": {
+		"@digitalbazaar/ed25519-verification-key-2020": "4.1.0",
+		"chalk": "5.1.0",
+		"fastify": "4.7.0",
+		"fastify-plugin": "4.2.1",
+		"lowdb": "3.0.0",
+		"nanoid": "4.0.0",
+		"pino": "8.6.1",
+		"pino-pretty": "9.1.1",
+		"stacktrace-parser": "0.1.10"
+	},
+	"devDependencies": {
+		"@milahu/patch-package": "6.4.14",
+		"@types/node": "18.8.2",
+		"ava": "4.3.3",
+		"npm-run-all": "4.1.5",
+		"prettier": "2.7.1",
+		"tsup": "6.2.3",
+		"tsx": "3.9.0",
+		"typescript": "4.8.4",
+		"xo": "0.52.4"
+	},
+	"tsup": {
+		"target": "esnext",
+		"format": [
+			"esm"
+		],
+		"outDir": "./build/",
+		"minify": true
+	},
+	"prettier": {
+		"semi": false,
+		"useTabs": true,
+		"singleQuote": true,
+		"bracketSpacing": true,
+		"trailingComma": "all",
+		"proseWrap": "always",
+		"endOfLine": "lf"
+	},
+	"xo": {
+		"prettier": true,
+		"rules": {
+			"capitalized-comments": 0,
+			"unicorn/prefer-number-properties": 0,
+			"@typescript-eslint/restrict-template-expressions": 0,
+			"@typescript-eslint/no-unsafe-call": 0,
+			"@typescript-eslint/no-unsafe-return": 0,
+			"@typescript-eslint/no-unsafe-assignment": 0,
+			"@typescript-eslint/no-floating-promises": 0
+		}
+	},
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"files": [
+			"test/suites/**/*.ts"
+		],
+		"nodeArguments": [
+			"--loader=tsx",
+			"--no-warnings"
+		]
+	}
+}

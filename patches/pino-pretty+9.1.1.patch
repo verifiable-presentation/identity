@@ -1,0 +1,29 @@
+# patches/fastify+9.1.1.patch
+# This patch changes the way the timestamp and level are formatted.
+
+diff --git a/node_modules/pino-pretty/lib/colors.js b/node_modules/pino-pretty/lib/colors.js
+index f6a20b1..2d90a5c 100644
+--- a/node_modules/pino-pretty/lib/colors.js
++++ b/node_modules/pino-pretty/lib/colors.js
+@@ -54,7 +54,7 @@ function colorizeLevel (useOnlyCustomProps) {
+       levelNum = Object.prototype.hasOwnProperty.call(levelNames, level.toLowerCase()) ? levelNames[level.toLowerCase()] : levelNum
+     }
+ 
+-    const levelStr = levels[levelNum]
++    const levelStr = levels[levelNum].toLocaleLowerCase()
+ 
+     return Object.prototype.hasOwnProperty.call(colorizer, levelNum) ? colorizer[levelNum](levelStr) : colorizer.default(levelStr)
+   }
+diff --git a/node_modules/pino-pretty/lib/utils.js b/node_modules/pino-pretty/lib/utils.js
+index 7320948..18237c4 100644
+--- a/node_modules/pino-pretty/lib/utils.js
++++ b/node_modules/pino-pretty/lib/utils.js
+@@ -462,7 +462,7 @@ function prettifyTime ({ log, timestampKey = TIMESTAMP_KEY, translateFormat = un
+   if (time === null) return undefined
+   const output = translateFormat ? formatTime(time, translateFormat) : time
+ 
+-  return prettifier ? prettifier(output) : `[${output}]`
++  return prettifier ? prettifier(output) : `${output}`
+ }
+ 
+ /**

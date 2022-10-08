@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "nodenext",
+		"target": "esnext",
+		"module": "esnext",
+		"declaration": false,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true,
+		"noEmit": true,
+		"skipLibCheck": true
+	}
+}

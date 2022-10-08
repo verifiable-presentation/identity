@@ -1,0 +1,8 @@
+{
+	"identifier": {
+		"properties": {
+			"email": "ramesh@institute.edu"
+		},
+		"type": "email"
+	}
+}
