@@ -3,7 +3,7 @@
 This API is used to generate and
 [decentralized identity documents](https://www.w3.org/TR/did-core/#dfn-did-documents)
 for all entities that are stored in a
-[`registry`](https://github.com/verifiable-presentation/registry).
+[registry](https://github.com/verifiable-presentation/registry).
 
 These documents contain the ID of the entity they describe, as well as the
 [assertion or verification methods](https://www.w3.org/TR/did-core/#dfn-verification-method)
@@ -14,7 +14,7 @@ used by the entity to sign and verify
 
 An example document is given below:
 
-```json
+```jsonc
 {
 	// The schema this JSON-LD document follows.
 	"@context": [
@@ -34,6 +34,14 @@ An example document is given below:
 			"publicKeyMultibase": "zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf",
 			"privateKeyMultibase": "z4E7Q4neNHwv3pXUNzUjzc6TTYspqn9Aw6vakpRKpbVrCzwKWD4hQDHnxuhfrTaMjnR8BTp9NeUvJiwJoSUM6xHAZ"
 		}
+	],
+	"assertionMethod": [
+		{
+			"id": "did:web:registry.io:entity:0adcea7457d79d3e#signing-key",
+			"type": "Ed25519VerificationKey2020",
+			"publicKeyMultibase": "zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf",
+			"privateKeyMultibase": "z4E7Q4neNHwv3pXUNzUjzc6TTYspqn9Aw6vakpRKpbVrCzwKWD4hQDHnxuhfrTaMjnR8BTp9NeUvJiwJoSUM6xHAZ"
+		}
 	]
 }
 ```
@@ -46,8 +54,7 @@ Once you receive the document, you must store it securely - you will need it to
 issue/sign [credentials](https://www.w3.org/TR/vc-data-model/#dfn-credential) or
 [presentations](https://www.w3.org/TR/vc-data-model/#dfn-verifiable-presentations) -
 and also store it (**without the private key fields**) in a
-[`registry`](https://github.com/verifiable-presentation/registry), so that
-others can verify
-[credentials](https://www.w3.org/TR/vc-data-model/#dfn-credential) or
+[registry](https://github.com/verifiable-presentation/registry), so that others
+can verify [credentials](https://www.w3.org/TR/vc-data-model/#dfn-credential) or
 [presentations](https://www.w3.org/TR/vc-data-model/#dfn-verifiable-presentations)
 signed with your public key.
