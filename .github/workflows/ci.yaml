@@ -1,0 +1,77 @@
+# .github/workflows/test.yaml
+# Lints and tests the server every time a commit is pushed to the remote
+# repository.
+
+name: CI
+on: [push, pull_request]
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Setup PNPM 7
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - name: Setup Node 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Check for errors in code/formatting
+        run: pnpm test:lint
+  smoke-test:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Setup PNPM 7
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - name: Setup Node 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run smoke tests
+        run: pnpm test:smoke
+  publish-docker-image:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Setup PNPM 7
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
+      - name: Setup Node 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Log in to GHCR
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build the Docker image
+        run: |
+          docker build --no-cache \
+            --tag ghcr.io/verifiable-presentation/identity:latest \
+            --tag ghcr.io/verifiable-presentation/identity:$(cat package.json | jq -r '.version') \
+            --tag identity \
+            --file build.dockerfile .
+        run: |
+          docker push --all-tags identity

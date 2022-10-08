@@ -1,0 +1,39 @@
+name: An Error Occurred
+description:
+  File an issue to request help with an error you encountered while following
+  the documentation.
+title: 'error: ...'
+labels: [error, needs triage]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description:
+        Please search to see if an issue already exists for the bug you
+        encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: What error do you see?
+      description:
+        Logs, output of any program, or even a screenshot of the error you are
+        seeing.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Environment
+      description: |
+        Examples:
+          - **OS**: Ubuntu 20.04
+          - **Node**: 18.4.0
+          - **Docker**: 20.10.17
+      value: |
+        - OS:
+        - Node:
+        - Docker:
+      render: markdown
+    validations:
+      required: false

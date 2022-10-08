@@ -14,7 +14,8 @@
 		"test:lint": "xo",
 		"test:smoke": "ava --match smoke*",
 		"test": "run-s test:*",
-		"prepare": "run-s compile"
+		"patch": "patch-package",
+		"prepare": "run-s patch compile"
 	},
 	"dependencies": {
 		"@digitalbazaar/ed25519-verification-key-2020": "4.1.0",
