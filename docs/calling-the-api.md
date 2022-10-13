@@ -1,6 +1,6 @@
-A student creating a DID using their school-issued email address could make the following request:
+`A student creating a DID using their school-issued email address could make the following request:
 
-POST /identity HTTP/1.1
+POST /identity HTTP/1.1`
 
 Host: identity-api.io
 
@@ -24,6 +24,40 @@ Content-Type: application/json
 	}
 }
 
+//Post  request body with curl
+
+curl -X POST  
+   -H "Content-Type: application/json"
+   -d '{
+	"identifier": {
+ 
+		"type": "email",
+    
+		"properties": {
+    
+			"email": "ramesh@institute.edu",
+      
+		}}'
+		
+//Post request body with HTTPie
+
+POST /post HTTP/1.1
+Content-Type: application/json
+Host: identity-api.io;
+
+{"identifier": {
+ 
+		"type": "email",
+    
+		"properties": {
+    
+			"email": "ramesh@institute.edu",
+      
+		}
+    
+}
+
+
 
 
 
@@ -38,3 +72,66 @@ POST   :  The HTTP POST request method sends data to the server. For CRUD operat
   Content-Type: application/json
   
 4)The overhead/ header data is used as an identifier, and its sole purpose is to indicate the source and destination of the information being transmitted.
+
+
+//Response
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+X-Request-Time: 457 ms
+
+{
+	"meta": {
+		"status": 201,
+	},
+	"data": {
+	  "@context": [
+	    "https://www.w3.org/ns/did/v1",
+	    "https://w3id.org/security/suites/ed25519-2020/v1"
+	  ]
+	  "id": "did:registry.io:entity:0adcea7457d79d3e",
+	  "verificationMethod": [{
+	    "id": "did:registry.io:entity:0adcea7457d79d3e#signing-key",
+	    "type": "Ed25519VerificationKey2020",
+	    "publicKeyMultibase": "zEYJrMxWigf9boyeJMTRN4Ern8DJMoCXaLK77pzQmxVjf",
+			"privateKeyMultibase": "z4E7Q4neNHwv3pXUNzUjzc6TTYspqn9Aw6vakpRKpbVrCzwKWD4hQDHnxuhfrTaMjnR8BTp9NeUvJiwJoSUM6xHAZ"
+	  }]
+	}
+}
+
+
+//Error
+
+1) Invalid Identitifier Type
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+X-Request-Time: 234 ms
+
+{
+	"meta": {
+		"status": 400,
+	},
+	"error": {
+	  "code": "improper-payload",
+	  "message": "An unsupported external identifier type was specified. Please refer to the documentation and specify a valid external identifier type in the request body."
+	}
+}
+
+2) Missing or Invalid Identitifier Properties
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+X-Request-Time: 234 ms
+
+{
+	"meta": {
+		"status": 400,
+	},
+	"error": {
+	  "code": "improper-payload",
+	  "message": "The properties for the external identifier were missing or incomplete. Please view the documentation and pass all properties correctly and try again."
+	}
+}
+
+
+
