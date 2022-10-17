@@ -1,13 +1,27 @@
+## CALLING THE API
+
+### This API is used to generate and decentralized identity documents for all entities that are stored in a registry.
+### These documents contain the ID of the entity they describe, as well as the assertion or verification methods used by the entity to sign and verify credentials or ### presentations (respectively) generated or issued by them. student creating a DID using their school-issued email address.
+
+### API
+
+#### Creating API document:
+#### POST /identity
+ Creates a DID document based on an external identifier provided by the entity. The following external identifiers are currently supported:
+ 
+ ##### Request
+ 
+
 `A student creating a DID using their school-issued email address could make the following request:
 
 POST /identity HTTP/1.1`
 
+
+```
+
 Host: identity-api.io
 
 Content-Type: application/json
-
-
-
 
 {
 
@@ -23,8 +37,12 @@ Content-Type: application/json
 		}
 	}
 }
-
+```
 //Post  request body with curl
+
+
+```
+
 
 curl -X POST  
    -H "Content-Type: application/json"
@@ -38,9 +56,16 @@ curl -X POST
 			"email": "ramesh@institute.edu",
       
 		}}'
-		
+	
+
+```
+
+
+	
 //Post request body with HTTPie
 
+
+```
 POST /post HTTP/1.1
 Content-Type: application/json
 Host: identity-api.io;
@@ -58,7 +83,7 @@ Host: identity-api.io;
 }
 
 
-
+```
 
 
 POST   :  The HTTP POST request method sends data to the server. For CRUD operations, the HTTP POST method is used to create or update a resource on the server
@@ -74,7 +99,8 @@ POST   :  The HTTP POST request method sends data to the server. For CRUD operat
 4)The overhead/ header data is used as an identifier, and its sole purpose is to indicate the source and destination of the information being transmitted.
 
 
-//Response
+#### Response
+```
 HTTP/1.1 201 Created
 Content-Type: application/json; charset=utf-8
 X-Request-Time: 457 ms
@@ -97,10 +123,11 @@ X-Request-Time: 457 ms
 	  }]
 	}
 }
-
+```
 
 //Error
 
+```
 1) Invalid Identitifier Type
 
 HTTP/1.1 400 Bad Request
@@ -116,9 +143,11 @@ X-Request-Time: 234 ms
 	  "message": "An unsupported external identifier type was specified. Please refer to the documentation and specify a valid external identifier type in the request body."
 	}
 }
-
+```
 2) Missing or Invalid Identitifier Properties
 
+
+```
 HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 X-Request-Time: 234 ms
@@ -133,5 +162,5 @@ X-Request-Time: 234 ms
 	}
 }
 
-
+```
 
