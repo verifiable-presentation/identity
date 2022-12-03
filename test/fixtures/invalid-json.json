@@ -1,0 +1,8 @@
+{
+  "identifier":{
+    "type"="email",
+    "properties":{
+      "email"="techmantejas@gmail.com"
+    } 
+  }
+}
