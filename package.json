@@ -13,6 +13,7 @@
 		"develop": "tsx watch --clear-screen ./source/server.ts",
 		"test:lint": "xo",
 		"test:smoke": "ava --match smoke*",
+		"test:unit": "ava --match unit*",
 		"test": "run-s test:*",
 		"patch": "patch-package",
 		"prepare": "run-s patch compile"
@@ -78,6 +79,7 @@
 		"nodeArguments": [
 			"--loader=tsx",
 			"--no-warnings"
-		]
+		],
+		"concurrency": 1
 	}
 }
