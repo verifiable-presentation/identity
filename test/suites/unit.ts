@@ -24,7 +24,7 @@ test.before(async (t) => {
 	t.context.server = build({ disableRequestLogging: true })
 })
 
-test('smoke | post /identity | 400 improper-payload [no body]', async (t) => {
+test('unit | post /identity | 400 improper-payload [no body]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -46,7 +46,7 @@ test('smoke | post /identity | 400 improper-payload [no body]', async (t) => {
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [no identifier]', async (t) => {
+test('unit | post /identity | 400 improper-payload [no identifier]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -67,7 +67,7 @@ test('smoke | post /identity | 400 improper-payload [no identifier]', async (t) 
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [invalid identifier]', async (t) => {
+test('unit | post /identity | 400 improper-payload [invalid identifier]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -88,7 +88,7 @@ test('smoke | post /identity | 400 improper-payload [invalid identifier]', async
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [no type]', async (t) => {
+test('unit | post /identity | 400 improper-payload [no type]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -109,7 +109,7 @@ test('smoke | post /identity | 400 improper-payload [no type]', async (t) => {
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [no properties]', async (t) => {
+test('unit | post /identity | 400 improper-payload [no properties]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -130,7 +130,7 @@ test('smoke | post /identity | 400 improper-payload [no properties]', async (t) 
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [invalid identifier properties]', async (t) => {
+test('unit | post /identity | 400 improper-payload [invalid identifier properties]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -151,7 +151,7 @@ test('smoke | post /identity | 400 improper-payload [invalid identifier properti
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [no external identifier]', async (t) => {
+test('unit | post /identity | 400 improper-payload [no external identifier]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -175,7 +175,7 @@ test('smoke | post /identity | 400 improper-payload [no external identifier]', a
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 400 improper-payload [invalid identifier properties email]', async (t) => {
+test('unit | post /identity | 400 improper-payload [invalid identifier properties email]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
@@ -199,7 +199,7 @@ test('smoke | post /identity | 400 improper-payload [invalid identifier properti
 	t.is(data, undefined)
 })
 
-test('smoke | post /identity | 500 server-crash [invalid json]', async (t) => {
+test('unit | post /identity | 500 server-crash [invalid json]', async (t) => {
 	const response = await t.context.server.inject({
 		method: 'post',
 		url: '/identity',
