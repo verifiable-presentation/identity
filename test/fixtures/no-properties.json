@@ -1,5 +1,5 @@
 {
-  "identifier":{
-    "type":"email"
-  }
+	"identifier": {
+		"type": "email"
+	}
 }

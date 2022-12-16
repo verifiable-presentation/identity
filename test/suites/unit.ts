@@ -29,7 +29,7 @@ test('unit | post /identity | 400 improper-payload [no body]', async (t) => {
 		method: 'post',
 		url: '/identity',
 		// Json.stringify() is used over here to ensure that the empty file is considered as a valid JSON
-		payload: JSON.stringify(fixture('no-body')),
+		payload: json.stringify(fixture('no-body')),
 		headers: { 'content-type': 'application/json' },
 	})
 

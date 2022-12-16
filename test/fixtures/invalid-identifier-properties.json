@@ -1,6 +1,6 @@
 {
-  "identifier":{
-    "type":"email",
-    "properties":"not an object" 
-  }
+	"identifier": {
+		"type": "email",
+		"properties": "not an object"
+	}
 }
